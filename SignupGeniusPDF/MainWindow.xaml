@@ -1,0 +1,57 @@
+﻿<Window x:Class="SignupGeniusPDF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="WSTPC - SignUp PDF Maker" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Column="0" Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Content="API Key" Grid.Row="0" />
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBox x:Name="APIKeyInput" Width="250" ToolTip="API Key" SpellCheck.IsEnabled="False" VerticalContentAlignment="Center" />
+                <Button Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Padding="5" Click="UpdateAPIKey" />
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" Margin="10">
+            <Label Content="Available Signups for Report:" />
+            <ListBox Visibility="Hidden" ItemsSource="{Binding SignupList}" Name="SignupSelection" BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <HierarchicalDataTemplate>
+                        <CheckBox Content="{Binding Content}" IsChecked="{Binding IsChecked}"></CheckBox>
+                    </HierarchicalDataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="0" Margin="10" Width="200">
+            <Label Content="Date for Reports" />
+            <DatePicker Name="dateInput" />
+            <CheckBox Name="separatePDFCheckBox" Content="Output as Separate PDF's" IsChecked="False" Margin="0 10 0 0" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Margin="10">
+            <Button Name="SaveButton" Content="Save PDF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Padding="5" Click="SavePDF" />
+            <Label Name="StatusUpdates" />
+        </StackPanel>
+
+    </Grid>
+</Window>
